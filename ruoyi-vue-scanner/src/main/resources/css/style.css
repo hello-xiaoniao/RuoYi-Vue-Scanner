@@ -1,0 +1,162 @@
+/* ========== 全局 ========== */
+.root {
+    -fx-font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #F4F6F8;
+}
+
+/* ========== 顶部标题栏 ========== */
+.header-bar {
+    -fx-background-color: linear-gradient(to right, #1E3A8A, #2563EB);
+    -fx-padding: 14 20 14 20;
+}
+.header-title {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.header-sub {
+    -fx-text-fill: #DBEAFE;
+    -fx-font-size: 11px;
+}
+
+/* ========== 卡片 ========== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 4, 0, 0, 1);
+}
+.card-title {
+    -fx-text-fill: #1F2937;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 6 0;
+}
+.card-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 11px;
+}
+
+/* ========== 输入控件 ========== */
+.field-label {
+    -fx-text-fill: #374151;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+.text-field, .text-area, .combo-box {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 5;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 5;
+    -fx-border-width: 1;
+    -fx-padding: 6 10 6 10;
+    -fx-prompt-text-fill: #9CA3AF;
+}
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #2563EB;
+    -fx-background-color: white;
+}
+.text-area .content {
+    -fx-background-color: #F9FAFB;
+}
+.combo-box .list-cell {
+    -fx-padding: 4 8 4 8;
+}
+
+/* ========== 按钮 ========== */
+.btn {
+    -fx-cursor: hand;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 8 14 8 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+.btn-danger {
+    -fx-background-color: #DC2626;
+}
+.btn-danger:hover {
+    -fx-background-color: #B91C1C;
+}
+.btn-primary {
+    -fx-background-color: #2563EB;
+}
+.btn-primary:hover {
+    -fx-background-color: #1D4ED8;
+}
+.btn-success {
+    -fx-background-color: #059669;
+}
+.btn-success:hover {
+    -fx-background-color: #047857;
+}
+.btn-neutral {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #374151;
+    -fx-border-color: #D1D5DB;
+    -fx-border-width: 1;
+}
+.btn-neutral:hover {
+    -fx-background-color: #E5E7EB;
+}
+.btn-warning {
+    -fx-background-color: #F59E0B;
+}
+.btn-warning:hover {
+    -fx-background-color: #D97706;
+}
+
+/* ========== 进度条 ========== */
+.progress-bar {
+    -fx-pref-height: 14;
+}
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to right, #2563EB, #3B82F6);
+    -fx-background-radius: 7;
+    -fx-padding: 0;
+}
+.progress-bar > .track {
+    -fx-background-color: #E5E7EB;
+    -fx-background-radius: 7;
+    -fx-border-color: transparent;
+}
+
+/* ========== 结果区（WebView 彩色日志控制台） ========== */
+.console-web {
+    -fx-border-color: #334155;
+    -fx-border-radius: 6;
+    -fx-border-width: 1;
+    -fx-background-radius: 6;
+}
+
+/* ========== 状态栏 ========== */
+.status-bar {
+    -fx-background-color: #1F2937;
+    -fx-text-fill: #E5E7EB;
+    -fx-padding: 6 14 6 14;
+    -fx-font-size: 11px;
+}
+.status-dot {
+    -fx-fill: #10B981;
+}
+.status-dot-busy {
+    -fx-fill: #F59E0B;
+}
+
+/* ========== 分组标签 ========== */
+.group-label {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 8 0 0;
+}
+
+.separator-v {
+    -fx-background-color: #E5E7EB;
+    -fx-pref-width: 1;
+    -fx-min-height: 24;
+}

