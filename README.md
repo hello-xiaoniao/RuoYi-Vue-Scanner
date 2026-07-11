@@ -72,6 +72,9 @@ mvnw.cmd package -DskipTests
 ### 导出
 
 - 扫描结果导出为 JSON / CSV / TXT
+<img width="1242" height="165" alt="12bf89d8-5f2c-4371-97b7-772ed2018d61" src="https://github.com/user-attachments/assets/f703e0f8-ef96-4565-96e2-b15f18f9ea1c" />
+
+
 
 ## POC 配置
 
